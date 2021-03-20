@@ -7,18 +7,20 @@ const CadastroEmpresa = () => {
   const [nome, setNome] = useState('');
   const [empresa, setEmpresa] = useState('');
   const [categoria, setCategoria] = useState('');
+  const [cep, setCep] = useState('');
   const [endereco, setEndereco] = useState('');
   const [bairro, setBairro] = useState('');
-  const [cep, setCep] = useState('');
   const [telefone, setTelefone] = useState('');
   const [descricao, setDescricao] = useState('');
   const [error, setError] = useState('');
   const [lista, setLista] = useState([]);
 
+  const getLista = () => {
+    const listaStorage = JSON.parse(localStorage.getItem('lista')) || [];
+    setLista(listaStorage);
+  }
+
   useEffect(() => {
-    const getLista = () => {
-      localStorage.getItem(lista)
-    }
     getLista();
   }, []);
 
@@ -54,14 +56,13 @@ const CadastroEmpresa = () => {
       descricao
     }
 
-    setLista([...lista, novaLista]);
+    const novaListagem = [...lista, novaLista];
+    setLista(novaListagem);
 
     try {
-      const data = JSON.stringify(novaLista); 
-
+      const data = JSON.stringify(novaListagem);
       localStorage.setItem('lista', data);
-
-      console.log('Cadastrado');
+      console.log('Cadastrado com sucesso');
 
       setNome('');
       setEmpresa('');
@@ -156,26 +157,8 @@ const CadastroEmpresa = () => {
           </div>
         )
         :
-        (
-          <span></span>
-        )
+        (<span />)
       }
-
-
-      <div>
-        <h2>Lista</h2>
-        <ul>
-          {
-            lista.length !== 0 ? (
-              lista.map(i => (
-                <li key={i.id}>{i.nome}</li>
-              ))
-            ) : (<span>Nada</span>)
-          }
-        </ul>
-
-      </div>
-
     </div>
   );
 }

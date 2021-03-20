@@ -4,10 +4,12 @@ const ListaEmpresas = () => {
 
   const [lista, setLista] = useState([]);
 
+  const getLista = () => {
+    const listaStorage = JSON.parse(localStorage.getItem('lista')) || [];
+    setLista(listaStorage);
+  }
+
   useEffect(() => {
-    const getLista = () => {
-      localStorage.getItem('lista')
-    }
     getLista();
   }, []);
 
@@ -21,7 +23,7 @@ const ListaEmpresas = () => {
               lista.length !== 0 ?
               (
                 lista.map(l => (
-                  <li className="list-group-item">
+                  <li key={l.id} className="list-group-item">
                     { l.nome }
                     <button className="btn btn-info float-right">Detalhes</button>
                   </li>
