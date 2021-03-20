@@ -3,7 +3,6 @@ import uniqid from 'uniqid';
 
 const CadastroEmpresa = () => {
 
-  const [id, setId] = useState('');
   const [nome, setNome] = useState('');
   const [empresa, setEmpresa] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -79,10 +78,6 @@ const CadastroEmpresa = () => {
     }
     
   }
-
-  const apagar = (id) => {}
-
-  const editar = (id) => {}
 
   return (
     <div>

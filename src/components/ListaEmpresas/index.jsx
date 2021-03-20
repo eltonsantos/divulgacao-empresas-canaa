@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ListaEmpresas = () => {
 
+  const [id, setId] = useState('');
   const [lista, setLista] = useState([]);
 
   const getLista = () => {
@@ -13,6 +14,12 @@ const ListaEmpresas = () => {
   useEffect(() => {
     getLista();
   }, []);
+
+  const excluir = (id) => {
+    const novaListagem = lista.filter( item => item.id !== id );
+    console.log(novaListagem);
+    setLista(novaListagem);
+  }
 
   return (
     <>  
@@ -25,8 +32,11 @@ const ListaEmpresas = () => {
               (
                 lista.map(l => (
                   <li key={l.id} className="list-group-item">
-                    { l.nome }
-                    <Link to={`/detalhes/${l.id}`} className="btn btn-info float-right">Detalhes</Link>
+                    <b>{ l.nome } --- {l.empresa} --- {l.categoria}</b>
+                    
+                    <button onClick={ () => { excluir(l.id) } } className="btn btn-danger float-right">Excluir</button>
+                    <Link to={`/editar/${l.id}`} className="btn btn-warning float-right mr-2">Editar</Link>
+                    <Link to={`/detalhes/${l.id}`} className="btn btn-info float-right mr-2">Detalhes</Link>
                   </li>
                 ))
               )

@@ -15,9 +15,6 @@ const DetalhesEmpresa = ({ match }) => {
   console.log(match);
   console.log(id);
 
-
-
-
   return (
     <div>
       <h1>Detalhe Empresa: { id }</h1>
