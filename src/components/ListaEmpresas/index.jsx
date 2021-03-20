@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 const ListaEmpresas = () => {
 
@@ -25,7 +26,7 @@ const ListaEmpresas = () => {
                 lista.map(l => (
                   <li key={l.id} className="list-group-item">
                     { l.nome }
-                    <button className="btn btn-info float-right">Detalhes</button>
+                    <Link to={`/detalhes/${l.id}`} className="btn btn-info float-right">Detalhes</Link>
                   </li>
                 ))
               )
