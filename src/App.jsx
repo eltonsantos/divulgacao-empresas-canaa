@@ -1,12 +1,18 @@
-import GlobalStyles from './styles/GlobalStyles';
 import Routes from './routes';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Menu from './components/Menu';
 
-function App() {
+import GlobalStyles from './styles/GlobalStyles';
+
+const App = () => {
   return (
-    <div className="container">
-      <GlobalStyles />
-      <Routes />
-    </div>
+    <Router>
+      <div className="container">
+        <Menu />
+        <Routes />
+        <GlobalStyles />
+      </div>
+    </Router>
   );
 }
 

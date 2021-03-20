@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uniqid from 'uniqid';
 
-function CadastroEmpresa() {
+const CadastroEmpresa = () => {
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
@@ -14,6 +14,13 @@ function CadastroEmpresa() {
   const [descricao, setDescricao] = useState('');
   const [error, setError] = useState('');
   const [lista, setLista] = useState([]);
+
+  useEffect(() => {
+    const getLista = () => {
+      localStorage.getItem(lista)
+    }
+    getLista();
+  }, []);
 
   const adicionar = (e) => {
     e.preventDefault();
@@ -153,6 +160,21 @@ function CadastroEmpresa() {
           <span></span>
         )
       }
+
+
+      <div>
+        <h2>Lista</h2>
+        <ul>
+          {
+            lista.length !== 0 ? (
+              lista.map(i => (
+                <li key={i.id}>{i.nome}</li>
+              ))
+            ) : (<span>Nada</span>)
+          }
+        </ul>
+
+      </div>
 
     </div>
   );

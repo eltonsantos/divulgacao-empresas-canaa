@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-function ListaEmpresas() {
+const ListaEmpresas = () => {
 
   const [lista, setLista] = useState([]);
 
   useEffect(() => {
     const getLista = () => {
-            
+      localStorage.getItem('lista')
     }
     getLista();
   }, []);
@@ -20,9 +20,12 @@ function ListaEmpresas() {
             {
               lista.length !== 0 ?
               (
-                <li className="list-group-item">
-                  <button className="btn btn-info float-right">Detalhes</button>
-                </li>
+                lista.map(l => (
+                  <li className="list-group-item">
+                    { l.nome }
+                    <button className="btn btn-info float-right">Detalhes</button>
+                  </li>
+                ))
               )
               :
               (
