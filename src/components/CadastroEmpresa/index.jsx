@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uniqid from 'uniqid';
 
 function CadastroEmpresa() {
 
@@ -34,7 +35,8 @@ function CadastroEmpresa() {
       setError('Campo telefone está vazio');
     }
 
-    const list = {
+    const novaLista = {
+      id: uniqid(),
       nome,
       empresa,
       categoria,
@@ -45,12 +47,23 @@ function CadastroEmpresa() {
       descricao
     }
 
-    try {
-      const data = JSON.parse(localStorage.getItem(list));
-      
-      localStorage.setItem('lista', JSON.stringify(data));
+    setLista([...lista, novaLista]);
 
-      console.log('cadastra');
+    try {
+      const data = JSON.stringify(novaLista); 
+
+      localStorage.setItem('lista', data);
+
+      console.log('Cadastrado');
+
+      setNome('');
+      setEmpresa('');
+      setCategoria('');
+      setCep('');
+      setEndereco('');
+      setBairro('');
+      setTelefone('');
+      setDescricao('');
 
     } catch (e) {
       console.log(e);
